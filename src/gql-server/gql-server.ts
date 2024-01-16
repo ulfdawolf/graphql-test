@@ -14,11 +14,26 @@ const typeDefs = `#graphql
     author: String
   }
 
+  # This "Session" type defines the queryable fields for every session in our data source.
+  type Session {
+    id: ID!
+    title: String!
+    description: String
+    startsAt: String
+    endsAt: String
+    room: String
+    day: String
+    format: String
+    track: String @deprecated(reason: "Too many sessions in single track")
+    level: String
+  }
+
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
     books: [Book]
+    sessions: [Session]
   }
 `;
 
@@ -42,6 +57,9 @@ const resolvers = {
     books: () => {
       return books;
     },
+    sessions: () => {
+      return sessions;
+    },
   },
 };
 
@@ -61,7 +79,7 @@ export const gqlServerStart = async () => {
     listen: { port: 4000 },
   });
 
-  console.log("Data: ", sessions);
+  console.log("Data: ", sessions[0]);
 
   console.log(`🚀 Server ready at: ${url}`);
 };

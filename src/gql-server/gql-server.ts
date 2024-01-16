@@ -1,6 +1,6 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { loadJSON } from "../tools/load-json";
+import sessionsData from "./data/sessions.json";
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
@@ -33,6 +33,8 @@ const books = [
   },
 ];
 
+const sessions = sessionsData;
+
 // Resolvers define how to fetch the types defined in your schema.
 // This resolver retrieves books from the "books" array above.
 const resolvers = {
@@ -59,8 +61,7 @@ export const gqlServerStart = async () => {
     listen: { port: 4000 },
   });
 
-  const s = await loadJSON("./data/sessions.json");
-  console.log("Data: ", s);
+  console.log("Data: ", sessions);
 
   console.log(`🚀 Server ready at: ${url}`);
 };

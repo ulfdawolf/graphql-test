@@ -44,7 +44,7 @@ export const bundle = () => {
     path.sep,
   );
   const { code } = shell.exec(
-    `node ${pathToEsbuild} src/index.ts --outdir=bundle --bundle --platform=node --target=node18.16.0`,
+    `node ${pathToEsbuild} src/index.ts --outdir=bundle --bundle --platform=node --target=node20.11.0`,
   );
   handleNonZeroReturnCode(code);
 };

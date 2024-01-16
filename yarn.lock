@@ -1393,6 +1393,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"graphql-test@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "graphql-test@workspace:."
+  dependencies:
+    "@tsconfig/node20": "npm:20.1.2"
+    "@types/node": "npm:20.11.2"
+    "@types/nodemon": "npm:1.19.6"
+    "@types/shelljs": "npm:0.8.15"
+    "@typescript-eslint/eslint-plugin": "npm:5.62.0"
+    "@typescript-eslint/parser": "npm:5.62.0"
+    concurrently: "npm:7.6.0"
+    esbuild: "npm:0.19.10"
+    eslint: "npm:8.56.0"
+    eslint-config-prettier: "npm:8.10.0"
+    nodemon: "npm:2.0.22"
+    prettier: "npm:3.2.2"
+    shelljs: "npm:0.8.5"
+    typescript: "npm:5.3.3"
+  bin:
+    graphql-test: dist/src/index.js
+    ntms: dist/src/index.js
+  languageName: unknown
+  linkType: soft
+
 "has-flag@npm:^3.0.0":
   version: 3.0.0
   resolution: "has-flag@npm:3.0.0"
@@ -1901,30 +1925,6 @@ __metadata:
   checksum: 578cf0c821f258ce4b6ebce4461eca4c991a4df2dee163c0624f2fe09c7d6d37240be4942285a0048d307230248ee0b18382d6623b9a0136ce9533486deddfa8
   languageName: node
   linkType: hard
-
-"nodejs-typescript-modern-starter@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "nodejs-typescript-modern-starter@workspace:."
-  dependencies:
-    "@tsconfig/node20": "npm:20.1.2"
-    "@types/node": "npm:20.11.2"
-    "@types/nodemon": "npm:1.19.6"
-    "@types/shelljs": "npm:0.8.15"
-    "@typescript-eslint/eslint-plugin": "npm:5.62.0"
-    "@typescript-eslint/parser": "npm:5.62.0"
-    concurrently: "npm:7.6.0"
-    esbuild: "npm:0.19.10"
-    eslint: "npm:8.56.0"
-    eslint-config-prettier: "npm:8.10.0"
-    nodemon: "npm:2.0.22"
-    prettier: "npm:3.2.2"
-    shelljs: "npm:0.8.5"
-    typescript: "npm:5.3.3"
-  bin:
-    nodejs-typescript-modern-starter: dist/src/index.js
-    ntms: dist/src/index.js
-  languageName: unknown
-  linkType: soft
 
 "nodemon@npm:2.0.22":
   version: 2.0.22

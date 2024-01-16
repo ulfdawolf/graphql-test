@@ -53,5 +53,9 @@
     "shelljs": "0.8.5",
     "typescript": "5.3.3"
   },
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.0.2",
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "graphql": "^16.8.1"
+  }
 }

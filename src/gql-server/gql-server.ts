@@ -27,21 +27,29 @@ const typeDefs = `#graphql
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
     sessions: [Session]
+    sessionById(id:ID): Session
   }
 `;
 
 type GQLServerContext = {
-  token?: string | string[] | undefined;
+  token?: string | string[];
   dataSources: {
     sessionAPI: SessionAPI;
   };
 };
 
+type QueryParams = {
+  id?: string;
+};
+
 // Resolvers define how to fetch the types defined in your schema.
 const resolvers = {
   Query: {
-    sessions: (_: undefined, __: object, ctx: GQLServerContext) => {
+    sessions: (_: undefined, __: QueryParams, ctx: GQLServerContext) => {
       return ctx.dataSources.sessionAPI.getSessions();
+    },
+    sessionById: (_: undefined, params: QueryParams, ctx: GQLServerContext) => {
+      return ctx.dataSources.sessionAPI.getSessionById(params.id);
     },
   },
 };

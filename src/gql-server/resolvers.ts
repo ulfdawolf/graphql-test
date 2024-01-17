@@ -1,4 +1,9 @@
-import { SessionAPI, SessionParamsType } from "../data-sources/session-api";
+import { resourceLimits } from "worker_threads";
+import {
+  SessionAPI,
+  SessionDataType,
+  SessionParamsType,
+} from "../data-sources/session-api";
 import { SpeakerAPI, SpeakerParamsType } from "../data-sources/speaker-api";
 
 export type GQLServerContextType = {
@@ -14,31 +19,48 @@ export const resolvers = {
   Query: {
     sessions: (
       _: undefined,
-      params: SessionParamsType,
+      args: SessionParamsType,
       ctx: GQLServerContextType,
     ) => {
-      return ctx.dataSources.sessionAPI.getSessions(params);
+      return ctx.dataSources.sessionAPI.getSessions(args);
     },
     sessionById: (
       _: undefined,
-      params: SessionParamsType,
+      args: SessionParamsType,
       ctx: GQLServerContextType,
     ) => {
-      return ctx.dataSources.sessionAPI.getSessionById(params.id);
+      return ctx.dataSources.sessionAPI.getSessionById(args.id);
     },
     speakers: (
       _: undefined,
-      params: SpeakerParamsType,
+      args: SpeakerParamsType,
       ctx: GQLServerContextType,
     ) => {
       return ctx.dataSources.speakerAPI.getSpeakers();
     },
     speakerById: (
       _: undefined,
-      params: SpeakerParamsType,
+      args: SpeakerParamsType,
       ctx: GQLServerContextType,
     ) => {
-      return ctx.dataSources.speakerAPI.getSpeakerById(params.id);
+      return ctx.dataSources.speakerAPI.getSpeakerById(args.id);
+    },
+  },
+  Session: {
+    speakers: async (
+      session: SessionDataType,
+      args: SpeakerParamsType,
+      ctx: GQLServerContextType,
+    ) => {
+      const speakers = await ctx.dataSources.speakerAPI.getSpeakers();
+      const result = speakers.filter((speaker) => {
+        return (
+          session.speakers.filter((s) => {
+            return s.id === speaker.id;
+          }).length > 0
+        );
+      });
+      return result;
     },
   },
 };

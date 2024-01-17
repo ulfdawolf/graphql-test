@@ -11,6 +11,7 @@ type Session {
   track: String @deprecated(reason: "Too many sessions in single track")
   level: String
   speakers: [Speaker]
+  favorite: Boolean
 }
 
 type Speaker {
@@ -41,4 +42,8 @@ type Query {
   # Speakers list and by ID
   speakers: [Speaker]
   speakerById(id: ID): Speaker
+}
+
+type Mutation {
+  toggleSessionFavorite(id: ID): Session
 }

@@ -1,6 +1,8 @@
 import sessionsData from "../gql-server/data/sessions.json";
 
-export type SessionDataType = (typeof sessionsData)[number];
+export type SessionDataType = (typeof sessionsData)[number] & {
+  favorite?: boolean;
+};
 export type SessionParamsType = {
   id?: string;
   title?: string;
@@ -45,5 +47,17 @@ export class SessionAPI {
       return s.id === idInt;
     });
     return sessionsWithId[0];
+  };
+
+  toggleSessionFavorite = async (id: string = "") => {
+    const idInt = parseInt(id);
+    const sessionsWithId = this.sessions.filter((s) => {
+      return s.id === idInt;
+    });
+    const session = sessionsWithId[0];
+    if (!!session) {
+      session.favorite = !session.favorite;
+    }
+    return session;
   };
 }

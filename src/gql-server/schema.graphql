@@ -1,0 +1,33 @@
+# This "Session" type defines the queryable fields for every session in our data source.
+type Session {
+  id: ID!
+  title: String!
+  description: String
+  startsAt: String
+  endsAt: String
+  room: String
+  day: String
+  format: String
+  track: String @deprecated(reason: "Too many sessions in single track")
+  level: String
+}
+
+# The "Query" type is special: it lists all of the available queries that
+# clients can execute, along with the return type for each. In this
+# case, the "sessions" query returns an array of zero or more Session (defined above).
+type Query {
+  sessions(
+    id: ID
+    title: String
+    description: String
+    startsAt: String
+    endsAt: String
+    room: String
+    day: String
+    format: String
+    track: String
+    level: String
+  ): [Session]
+  # Filter by ID, one Session or null
+  sessionById(id: ID): Session
+}

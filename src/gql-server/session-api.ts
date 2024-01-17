@@ -14,7 +14,9 @@ export class SessionAPI {
 
   getSessionById = async (id: string = "") => {
     const idInt = parseInt(id);
-    const sessionsWithId = this.sessions.filter((s) => s.id == idInt);
+    const sessionsWithId = this.sessions.filter((s) => {
+      return s.id === idInt;
+    });
     return sessionsWithId[0];
   };
 }

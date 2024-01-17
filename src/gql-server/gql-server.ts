@@ -1,6 +1,6 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { SessionAPI } from "./session-api";
+import { SessionAPI, QueryParams } from "./session-api";
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
@@ -26,7 +26,18 @@ const typeDefs = `#graphql
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
-    sessions: [Session]
+    sessions(
+      id: ID
+      title: String
+      description: String
+      startsAt: String
+      endsAt: String
+      room: String
+      day: String
+      format: String
+      track: String
+      level: String  
+    ): [Session]
     sessionById(id:ID): Session
   }
 `;
@@ -38,15 +49,11 @@ type GQLServerContext = {
   };
 };
 
-type QueryParams = {
-  id?: string;
-};
-
 // Resolvers define how to fetch the types defined in your schema.
 const resolvers = {
   Query: {
-    sessions: (_: undefined, __: QueryParams, ctx: GQLServerContext) => {
-      return ctx.dataSources.sessionAPI.getSessions();
+    sessions: (_: undefined, params: QueryParams, ctx: GQLServerContext) => {
+      return ctx.dataSources.sessionAPI.getSessions(params);
     },
     sessionById: (_: undefined, params: QueryParams, ctx: GQLServerContext) => {
       return ctx.dataSources.sessionAPI.getSessionById(params.id);

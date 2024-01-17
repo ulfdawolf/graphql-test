@@ -1,6 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { SessionAPI } from "./session-api";
+import { SessionAPI } from "../data-sources/session-api";
+import { SpeakerAPI } from "../data-sources/speaker-api";
 import { GQLServerContextType, resolvers } from "./resolvers";
 import { readFileSync } from "fs";
 
@@ -25,6 +26,7 @@ export const gqlServerStart = async () => {
         token: req.headers.token,
         dataSources: {
           sessionAPI: new SessionAPI(),
+          speakerAPI: new SpeakerAPI(),
         },
       };
     },

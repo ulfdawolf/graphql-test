@@ -1,7 +1,7 @@
-import sessionsData from "./data/sessions.json";
+import sessionsData from "../gql-server/data/sessions.json";
 
 export type SessionDataType = (typeof sessionsData)[number];
-export type QueryParams = {
+export type SessionParamsType = {
   id?: string;
   title?: string;
   description?: string;
@@ -15,19 +15,16 @@ export type QueryParams = {
 };
 
 export class SessionAPI {
-  private sessions: SessionDataType[];
-  constructor() {
-    this.sessions = sessionsData;
-  }
+  private sessions: SessionDataType[] = sessionsData;
 
-  getSessions = async (params: QueryParams) => {
-    function search(session: SessionDataType, params: QueryParams) {
+  getSessions = async (params: SessionParamsType) => {
+    function search(session: SessionDataType, params: SessionParamsType) {
       return Object.keys(params).every((key) => {
         if (!params.hasOwnProperty(key)) {
           return true;
         }
 
-        const value = params[key as keyof QueryParams] || "";
+        const value = params[key as keyof SessionParamsType] || "";
         if (key === "id") {
           return parseInt(value) === session.id;
         }

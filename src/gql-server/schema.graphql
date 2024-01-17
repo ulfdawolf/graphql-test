@@ -12,6 +12,13 @@ type Session {
   level: String
 }
 
+type Speaker {
+  id: ID!
+  bio: String
+  name: String
+  sessions: [Session]
+}
+
 # The "Query" type is special: it lists all of the available queries that
 # clients can execute, along with the return type for each. In this
 # case, the "sessions" query returns an array of zero or more Session (defined above).
@@ -30,4 +37,7 @@ type Query {
   ): [Session]
   # Filter by ID, one Session or null
   sessionById(id: ID): Session
+  # Speakers list and by ID
+  speakers: [Speaker]
+  speakerById(id: ID): Speaker
 }

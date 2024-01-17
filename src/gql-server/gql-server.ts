@@ -1,8 +1,9 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
+import { GQLServerContextType } from "../data-sources/types";
 import { SessionAPI } from "../data-sources/session-api";
 import { SpeakerAPI } from "../data-sources/speaker-api";
-import { GQLServerContextType, resolvers } from "./resolvers";
+import { resolvers } from "../resolvers/resolvers";
 import { readFileSync } from "fs";
 
 const typeDefs = readFileSync("./src/gql-server/schema.graphql", {

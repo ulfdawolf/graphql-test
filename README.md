@@ -1,3 +1,18 @@
+# GraphQL Apollo Server Tutorial with TypeScript on Node.js
+
+Used this good template (see below) to follow a GraphQL course and do the demos in TypeScript.
+
+Usage:
+
+- Run yarn install in this folder and run dev
+- yarn install
+- yarn dev
+- Extract the speakers.zip in separate folder
+- Enter folder and do:
+- npm install
+- npm run - this will start a REST server on :3000
+- Goto localhost:4000 and try out the GraphQL interface.
+
 # Node.js Typescript Modern Starter
 
 While developing with Typescript and Node.js is awesome, **setting up a new

@@ -21,6 +21,19 @@ type Speaker {
   sessions: [Session]
 }
 
+input SessionInput {
+  title: String!
+  description: String
+  startsAt: String
+  endsAt: String
+  room: String
+  day: String
+  format: String
+  track: String
+  level: String
+  favorite: Boolean
+}
+
 # The "Query" type is special: it lists all of the available queries that
 # clients can execute, along with the return type for each. In this
 # case, the "sessions" query returns an array of zero or more Session (defined above).
@@ -46,4 +59,5 @@ type Query {
 
 type Mutation {
   toggleSessionFavorite(id: ID): Session
+  addNewSession(session: SessionInput): Session
 }

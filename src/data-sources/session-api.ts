@@ -3,6 +3,20 @@ import sessionsData from "../gql-server/data/sessions.json";
 export type SessionDataType = (typeof sessionsData)[number] & {
   favorite?: boolean;
 };
+
+export type SessionInputDataType = {
+  title?: string;
+  description?: string;
+  startsAt?: string;
+  endsAt?: string;
+  room?: string;
+  day?: string;
+  format?: string;
+  track?: string;
+  level?: string;
+  favorite: boolean;
+};
+
 export type SessionParamsType = {
   id?: string;
   title?: string;
@@ -14,6 +28,7 @@ export type SessionParamsType = {
   format?: string;
   track?: string;
   level?: string;
+  session?: SessionInputDataType;
 };
 
 export class SessionAPI {
@@ -27,7 +42,7 @@ export class SessionAPI {
         }
 
         const value = params[key as keyof SessionParamsType] || "";
-        if (key === "id") {
+        if (key === "id" && typeof value == "string") {
           return parseInt(value) === session.id;
         }
 
@@ -58,6 +73,13 @@ export class SessionAPI {
     if (!!session) {
       session.favorite = !session.favorite;
     }
+    return session;
+  };
+
+  addNewSession = async (
+    session: SessionInputDataType = { title: "", favorite: false },
+  ) => {
+    // TODO
     return session;
   };
 }

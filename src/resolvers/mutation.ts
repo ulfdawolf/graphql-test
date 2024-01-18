@@ -9,4 +9,11 @@ export const Mutation = {
   ) => {
     return ctx.dataSources.sessionAPI.toggleSessionFavorite(args.id);
   },
+  addNewSession: (
+    _: undefined,
+    args: SessionParamsType,
+    ctx: GQLServerContextType,
+  ) => {
+    return ctx.dataSources.sessionAPI.addNewSession(args.session);
+  },
 };

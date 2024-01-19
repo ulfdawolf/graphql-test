@@ -2,6 +2,11 @@
 
 Used this good template (see below) to follow a GraphQL course and do the demos in TypeScript.
 
+Main learnings:
+* GraphQL Apollo Server version 4 setup (Course is for v2)
+* Typescript for Apollo Server (Course is javascript)
+* TODO: Did not finish the create sessions resolver yet.
+
 Usage:
 
 - Run yarn install in this folder and run dev

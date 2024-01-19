@@ -7,13 +7,11 @@ Main learnings:
 * Typescript for Apollo Server (Course is javascript)
 * TODO: Did not finish the create sessions resolver yet.
 
-Usage:
+Usage: Run yarn install in this folder and run dev
 
-- Run yarn install in this folder and run dev
 - yarn install
 - yarn dev
-- Extract the speakers.zip in separate folder
-- Enter folder and do:
+- Extract the speakers.zip in separate folder - Enter folder and do:
 - npm install
 - npm run - this will start a REST server on :3000
 - Goto localhost:4000 and try out the GraphQL interface.
